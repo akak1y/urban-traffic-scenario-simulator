@@ -22,10 +22,6 @@ The project is built around a plain C++ simulation core, with Unreal Engine used
 - Core namespace: `utss`
 - License: MIT
 
-## CI
-
-[![CI](https://github.com/akak1y/urban-traffic-scenario-simulator/actions/workflows/ci.yml/badge.svg)](https://github.com/akak1y/urban-traffic-scenario-simulator/actions/workflows/ci.yml)
-
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE).
