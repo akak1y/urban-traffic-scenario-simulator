@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  repo-hygiene:
+    name: Repository hygiene
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check required files
+        run: |
+          files="README.md LICENSE CHANGELOG.md CONTRIBUTING.md .gitignore .gitattributes .editorconfig docs/architecture.md docs/road-geometry.md UTSS.uproject Source/UTSS/UTSS.Build.cs Content/Maps/Main.umap"
+          missing=0
+          for f in $files; do
+            if [ ! -f "$f" ]; then
+              echo "MISSING: $f"
+              missing=1
+            fi
+          done
+          if [ "$missing" -ne 0 ]; then
+            echo "One or more required bootstrap files are missing."
+          fi
+          exit $missing
